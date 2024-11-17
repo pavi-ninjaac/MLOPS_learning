@@ -25,6 +25,7 @@ This file uses the latest Airflow image (apache/airflow). If you need to install
 ```
 docker-compose file:
 ```
+# YOu have to make sure you have these folders before running the docker compose.
 mkdir -p ./dags ./logs ./plugins ./config
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.10.3/docker-compose.yaml'
@@ -49,3 +50,7 @@ cleaning up
 ```
 docker compose down --volumes --rmi all
 ```
+
+
+# Placement of files.
+- you should paste your DAG file inside the ./dags folder. dag file calls -> bash script -> actual script.

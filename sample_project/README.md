@@ -34,9 +34,17 @@ pavithra@pmurugesan-lnx1:~/projects/MLOPS_learning/sample_project/Docker/spark$(
 ```
 - Now codes need to be present inside the core/ folder and manage everything inside this.
 - But make sure to place the corresponding dag file inside the Docker/airflow/dags
+- Each component has a separate docker-compose.yaml file, But still just to keep everything in one place and mention the same docker network - kept everything in one dockerfile.
 
 
 
+
+
+# Code availability.
+
+- All the codes should present inside the airflow container- the codes are gonna run frm the airflow container.
+- there should be a connectivity bwt the airflow and mlflow and spark.
+- they should all present inside the same docker network.
 
 
 
@@ -57,9 +65,32 @@ spark = SparkSession.builder \
 ```
 - 2. all the containers should present in the same network for connectivity. (airflow, mlflow and spark)
 - 3. Your local spark version should match the spark version inside the container.
+- 4. your local python version should match the python version inside the cotainer.
 ```
 I am using the spark version 3.4.3 everywhere after facing the issue of
 24/11/23 22:11:19 WARN TaskSetManager: Lost task 0.0 in stage 0.0 (TID 0) (172.17.0.3 executor 0): java.io.InvalidClassException: org.apache.spark.rdd.RDD; local class incompatible: stream classdesc serialVersionUID = -857609805308345919, local class serialVersionUID = -1432615955171021378
 
 ```
 - 4. The dataset you use in spark should present inside the container too. mounte it.
+- 5. Connect to spark inside the container.
+```
+pyspark --master spark://spark-master:7077
+```
+
+
+
+
+
+
+
+# Airflow - debugging
+- 1. if your dags are not present, run this inside the container.
+
+```
+airflow dags list
+
+
+By default, the scheduler checks the dags_folder every 30 seconds for new or updated DAG files.
+The min_file_process_interval sets the minimum time in seconds that must pass before a file is processed again.
+```
+- Make sure you have write permission to the folders, you are writing to. NOTE

@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye as spark-base
+FROM python:3.8-bullseye as spark-base
 
 ARG SPARK_VERSION=3.4.3
 

@@ -1,0 +1,3 @@
+# ignore the airlfow logs folder sinde it has too many files.
+3_Airflow/logs/
+sample_project/Docker/airflow/logs/

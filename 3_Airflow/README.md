@@ -51,6 +51,13 @@ cleaning up
 docker compose down --volumes --rmi all
 ```
 
+- I have extended the base images to mention downloading more packages. ( Chnages done inside the sample_project folder)
 
 # Placement of files.
 - you should paste your DAG file inside the ./dags folder. dag file calls -> bash script -> actual script.
+
+
+# Important to node.
+- 1. you can make the pipeline using the TaskFlow API easily using the @task and @dag decorators.
+- 2. Use ExternalTaskSensor for sense the first dag and wait for that dag to finish before triggering the next one. (ex: /home/pavithra/projects/MLOPS_learning/sample_project/Docker/airflow/dags/d2_train_model_dag.py)
+- 3. Use TriggerDagRunOperator to trigger the first dag whenever the second dag is being run. (ex. )
